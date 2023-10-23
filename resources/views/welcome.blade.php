@@ -19,6 +19,7 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
+         <link rel="{{ asset('build/assets/app-c0a89d41.css') }}" href="style.css">
     </head>
     <body class="antialiased">
         <a href="login">GestionaTI</a>

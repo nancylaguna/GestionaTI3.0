@@ -20,12 +20,13 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- <link rel="{{ asset('build/assets/app-c0a89d41.css') }}" href="style.css"> -->
     </head>
     <body class="font-sans antialiased">
         <!-- Contenido de la página -->
-        <main class="flex">
-            <!-- Barra izquierda     -->
-            <div class="bg-indigo-950 h-screen w-full sm:max-w-xs">
+        <div class="flex">
+            <!-- Primer contenedor     -->
+            <div class="bg-indigo-950 h-screen w-4/5 sm:max-w-xs">
                 <div style="text-align: left;">
                     <div style="display: flex; align-items: center;">
                         <!-- Logo de la página -->
@@ -56,8 +57,8 @@
                 {{ $slot }}
             </div>
 
-            <!-- Barra derecha -->
-            <div class="bg-white w-3/4 h-32 mt-7 mx-8 my-auto flex rounded-lg border border-gray-500 justify-end">
+            <!-- Segundo contenedor -->
+            <div class="bg-white w-screen h-4/5 mt-7 mx-8 my-auto flex rounded-lg border border-gray-500 justify-end">
                 <div style="text-align: right;">
                     <div style="display: flex; align-items: center;">
                         <!-- Contenedor para el nombre de usuario -->
@@ -114,9 +115,8 @@
                     </div>
                 </div>
             </div>
-            <div>
-                
-            </div>
-        </main>
+            <!-- Contenedor para vistas de graficas -->
+            
+        </div>
     </body>
 </html>

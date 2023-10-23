@@ -13,21 +13,23 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- <link rel="{{ asset('build/assets/app-c0a89d41.css') }}" href="style.css"> -->
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:flex-row justify-between items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+            <!-- Contenedor para logo e imagen -->  
             <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
                 <a href="login" class="w-full "> 
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500 mx-auto" />
                 </a>
                 <div>
                     <a>
-                        <img src="{{ asset('storage/img/programador.png') }}" alt="GestionaTI" style="width: 90%; margin-right: 10px;">
+                        <img src="{{ asset('storage/img/programador.png') }}" alt="GestionaTI" style="width: 100%; margin-right: 10px;">
                     </a>
                 </div>
             </div>
-
-            <div class="h-screen w-full sm:max-w-sm flex flex-col justify-center items-center ml-auto px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <!-- Contenedor para campos de login -->  
+            <div class="h-screen w-full sm:max-w-md flex flex-col justify-center items-center ml-auto px-10 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>
