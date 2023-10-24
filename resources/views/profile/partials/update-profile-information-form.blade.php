@@ -20,14 +20,14 @@
 
         <div>
             <x-input-label for="name" :value="__('Nombre')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-2/3" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <!-- Apartado para que aparezca el correo sin que se pueda modificar -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="$user->email" disabled/>
+            <x-input-label for="email" :value="__('Correo')" />
+            <x-text-input id="email" name="email" type="email" class="mt-1 block w-2/3 bg-stone-300" :value="$user->email" disabled/>
             <!-- El atributo "disabled" deshabilita el campo de correo electrónico -->
         </div>
         <!-- Boton para actualizar el nombre -->
