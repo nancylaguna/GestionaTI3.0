@@ -83,19 +83,17 @@
 
 
         <div class="my-6"></div>
-
                 
-        <!--  Botón para iniciar sesión-->
+        <!-- Botón para iniciar sesión -->
         <x-primary-button class="mt-4 w-full justify-center text-xl">
             {{ __('Iniciar sesión') }}
         </x-primary-button>
-        @if (Route::has('password.request'))
-        <!-- Boton direccionar a vista olvide la contraseña -->
-        <div class="my-4"></div>
 
-            <a style="text-decoration: none; " class="block mt-3 text-md text-teal-700 dark:text-teal-800 hover:text-teal-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 text-center" href="{{ route('password.request') }}">
+        @if (Route::has('password.request'))
+            <!-- Enlace para restablecer la contraseña -->
+            <a href="{{ route('password.request') }}" class="block mt-3 text-md text-teal-700 dark:text-teal-800 hover:text-teal-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 text-center" >
                 {{ __('¿Olvidaste tu contraseña?') }}
             </a>
-            @endif
+        @endif
     </form>
 </x-guest-layout>
