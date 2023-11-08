@@ -10,9 +10,9 @@
             <br>
             {{ __('GestionaTI') }}
         </div>
-<br>
+        <br>
         <x-input-label :value="__('¡Inicia sesion para comenzar!')" class="text-xl"/>
-<br>
+        <br>
         <!-- Email -->
         <div>
             <x-input-label class="text-md" for="email" :value="__('Email')" />
@@ -20,47 +20,30 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
         <div class="my-8"></div>
-
         <!-- Contraseña -->
         <div class="mt-4">
             <!-- Etiqueta para la entrada de contraseña con clase de texto grande -->
             <x-input-label class="text-md" for="password" :value="__('Contraseña')" />
-
             <div class="relative">
-                <!-- Campo de entrada de contraseña con margen derecho para hacer espacio al botón -->
-                <x-text-input id="password" class="block pr-10 mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+    <!-- Campo de entrada de contraseña con margen derecho para hacer espacio al botón -->
+    <x-text-input id="password" class="block pr-10 mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
 
-                <!-- Botón para mostrar/ocultar la contraseña -->
-                <button
-                    type="button"
-                    id="toggle-password"
-                    class="absolute top-0 right-0 mt-3 mr-3 p-2 text-gray-500 cursor-pointer"
-                    style="z-index: 2;" 
-                >
-                <!-- Icono de ojo para mostrar/ocultar la contraseña -->
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                        style="width: 1.5rem; height: 1.5rem;" 
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M4.293 7.293a1 1 0 011.414-1.414L12 14.586l6.293-6.293a1 1 0 111.414 1.414L12 17.414l-7.707-7.707a1 1 0 010-1.414z"
-                        />
-                    </svg>
-                </button>
-            </div>
+    <!-- Botón para mostrar/ocultar la contraseña -->
+    <button
+        type="button"
+        id="toggle-password"
+        class="absolute top-1/2 right-0 mt-3 mr-3 p-2 text-gray-500 cursor-pointer transform -translate-y-1/2"
+        style="z-index: 2;"
+    >
+        <!-- Image of the eye icon to show/hide the password -->
+        <img
+            src="{{ asset('storage/img/ojo.ico') }}"
+            alt="Icono Ojo"
+            class="w-1 h-2 mb-5"
+            style="width: 2rem; height: 2rem;"
+        />
+    </button>
+</div>
 
             <!-- Mensaje de error para la entrada de contraseña -->
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -80,7 +63,6 @@
                 }
             });
         </script>
-
 
         <div class="my-6"></div>
                 
