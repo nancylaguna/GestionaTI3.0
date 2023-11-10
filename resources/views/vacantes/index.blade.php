@@ -1,9 +1,57 @@
 <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-2 dark:bg-gray-800 ">
-                Mis vacantes son las siguientes
-            </div>
+    <h1 class="hidden sm:flex text-black dark:text-black ml-10 text-2xl mt-1">Base de datos</h1>
+    <p class="hidden sm:flex text-black dark:text-black ml-10 text-md">Requerimientos</p>
+    
+    <div class="py-6">
+
+        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 space-y-6">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            ID
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            Título de la vacante
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            Presupuesto
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            Estatus
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            Sugeridos
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                            Registros
+                        </th>
+                    </tr>                
+                </thead>
+
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($vacantes as $vacante)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->id }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->title }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->detail ?? 'N/A' }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap">
+                                @if ($vacante->status == 1)
+                                    Activo
+                                @elseif ($vacante->status == 2)
+                                    Inactivo
+                                @elseif ($vacante->status == 3)
+                                    Pendiente
+                                @elseif ($vacante->status == 4)
+                                    Activo
+                                @else
+                                    Otro estado
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </x-app-layout>

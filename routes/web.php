@@ -3,6 +3,10 @@
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\VacanteController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,11 +34,14 @@ Route::middleware('auth')->group(function () {
 });
 
 // Candidatos Index
-Route::get('/candidatos', [AppController::class,'index1'])->name('candidatos.index');
+//Route::get('/candidatos', [AppController::class,'index1'])->name('candidatos.index');
+Route::get('/candidatos', [CandidatoController::class, 'index1'])->name('candidatos.index');
+
 // Graficas Index
 Route::get('/graficas', [AppController::class,'index2'])->name('graficas.index');
+
 // Vacantes index
-Route::get('/vacantes', [AppController::class,'index3'])->name('vacantes.index');
+Route::get('/vacantes', [VacanteController::class, 'index3'])->name('vacantes.index');
 
 
 require __DIR__.'/auth.php';

@@ -100,8 +100,6 @@
             </div>
             <!-- Contenedor para vista -->
             <div class="div3">
-                <h1 class="hidden sm:flex text-black dark:text-black ml-10 text-2xl mt-1">Base de datos</h1>
-                <p class="hidden sm:flex text-black dark:text-black ml-10 text-md">Requerimientos</p>
                 {{ $slot }}
             </div>
     </body>
