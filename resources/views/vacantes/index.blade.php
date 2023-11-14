@@ -1,6 +1,5 @@
 <x-app-layout>
-    <h1 class="hidden sm:flex text-black dark:text-black ml-10 text-2xl mt-1">Base de datos</h1>
-    <p class="hidden sm:flex text-black dark:text-black ml-10 text-md">Requerimientos</p>
+    <h1 class="hidden sm:flex text-black dark:text-black ml-10 text-2xl mt-1">Vacantes</h1>
     
     <div class="py-6">
 
@@ -37,17 +36,19 @@
                             <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->detail ?? 'N/A' }}</td>
                             <td class="px-6 py-4 whitespace-no-wrap">
                                 @if ($vacante->status == 1)
-                                    Activo
+                                    Abierto
                                 @elseif ($vacante->status == 2)
-                                    Inactivo
-                                @elseif ($vacante->status == 3)
                                     Pendiente
+                                @elseif ($vacante->status == 3)
+                                    Cerrado
                                 @elseif ($vacante->status == 4)
-                                    Activo
+                                    Abierto
                                 @else
                                     Otro estado
                                 @endif
                             </td>
+                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->id }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->id }}</td>
                         </tr>
                     @endforeach
                 </tbody>

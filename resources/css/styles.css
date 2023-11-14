@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     padding: 0;
@@ -27,4 +28,5 @@ body {
     grid-row: 2 / 3; /* Ocupa desde la segunda fila hasta la tercera (resto del alto) */
     overflow: scroll;
 }
+
 
