@@ -15,6 +15,7 @@ body {
     background-color: #222846; /* Color de fondo del primer div */
     grid-column: 1 / 2; /* Ocupa desde la primera columna hasta la segunda (1/4 del ancho) */
     grid-row: 1 /3; /* Ocupa desde la primera fila hasta la segunda (1/5 de alto) */
+    
 }
 
 .div2 {

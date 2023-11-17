@@ -99,7 +99,7 @@
                         <p class="hidden sm:flex text-black dark:text-black ml-10">Admin</p>
                     </div>
                     <!-- Imagen del perfil -->
-                    <img src="{{ asset('storage/img/cara.jpg') }}" alt="Imagen" class="w-26 h-16 ml-4 mr-4">
+                    <img src="{{ asset('storage/img/perfil.png') }}" alt="Perfil" class="w-26 h-16 ml-4 mr-4">
                 </div>
             </div>
             <!-- Contenedor para vista -->

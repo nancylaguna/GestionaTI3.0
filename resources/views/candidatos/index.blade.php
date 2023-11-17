@@ -48,7 +48,7 @@
                             <td class="px-6 py-4 whitespace-no-wrap">
                                 @if (!str_starts_with($candidato['cv_url'], 'userFiles/'))
                                     <a href="{{ $candidato['cv_url'] }}" target="_blank">
-                                        <img src="{{ asset('storage/img/ojo.ico') }}" alt="Ver CV" class="w-8 h-8 cursor-pointer">
+                                        <img src="{{ asset('storage/img/ver.ico') }}" alt="Ver CV" class="w-8 h-8 cursor-pointer">
                                     </a>
                                 @endif
                             </td>
