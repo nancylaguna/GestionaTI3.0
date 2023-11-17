@@ -24,7 +24,7 @@
                 </a>
                 <div>
                     <a>
-                        <img src="{{ asset('storage/img/programador.png') }}" alt="GestionaTI" style="width: 100%">
+                        <img src="{{ asset('storage/img/programadora.png') }}" alt="GestionaTI" style="width: 100% w-screen h-screen">
                     </a>
                 </div>
             </div>

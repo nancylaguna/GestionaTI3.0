@@ -11,7 +11,7 @@
             {{ __('GestionaTI') }}
         </div>
         <br>
-        <x-input-label :value="__('¡Inicia sesion para comenzar!')" class="text-xl"/>
+        <x-input-label :value="__('¡Inicia sesión para comenzar!')" class="text-xl"/>
         <br>
         <!-- Email -->
         <div>
@@ -35,7 +35,7 @@
         class="absolute top-1/2 right-0 mt-3 mr-3 p-2 text-gray-500 cursor-pointer transform -translate-y-1/2"
         style="z-index: 2;"
     >
-        <!-- Image of the eye icon to show/hide the password -->
+        <!-- Imagen ojo para mostrar/ocultar contraseña -->
         <img
             src="{{ asset('storage/img/ojo.ico') }}"
             alt="Icono Ojo"

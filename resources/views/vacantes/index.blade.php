@@ -1,9 +1,8 @@
 <x-app-layout>
     <h1 class="hidden sm:flex text-black dark:text-black ml-10 text-2xl mt-1">Vacantes</h1>
-    
     <div class="py-6">
-
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 space-y-6">
+       
             <table class="min-w-full divide-y divide-gray-200">
                 <thead>
                     <tr>
@@ -47,8 +46,8 @@
                                     Otro estado
                                 @endif
                             </td>
-                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->id }}</td>
-                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->id }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->candidatos_cumplen_req }}</td>
+                            <td class="px-6 py-4 whitespace-no-wrap">{{ $vacante->num_candidatos }}</td>
                         </tr>
                     @endforeach
                 </tbody>

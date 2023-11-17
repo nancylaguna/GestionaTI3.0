@@ -5,7 +5,7 @@
             {{ __('¿Olvidaste tu contraseña?') }}
         </div>
         <br>
-        <x-input-label :value="__('Ingresa tu correo electronico y te enviaremos instrucciones para recuperar tu contraseña')" class="text-md"/>
+        <x-input-label :value="__('Ingresa tu correo electrónico y te enviaremos instrucciones para recuperar tu contraseña')" class="text-md"/>
         <br>
         <!-- Estatus de la sesión -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
