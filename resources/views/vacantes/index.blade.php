@@ -7,11 +7,11 @@
         <!-- Contenedor ancho máximo y espaciado horizontal para los elementos principales -->
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <!-- Formulario de filtro -->
-            <form method="GET" action="{{ route('vacantes.index', ['filtro_estatus' => $filtroEstatus]) }}" class="mb-4 form-container">
+            <form method="GET" action="{{ route('vacantes.index', ['filtro_estatus' => $filtroEstatus]) }}" class="mb-4 form-container ">
                 <!-- Etiqueta del filtro -->
                 <label for="filtro_estatus">Estatus:</label>
                 <!-- Menú desplegable de opciones de filtro -->
-                <select name="filtro_estatus" id="filtro_estatus" onchange="this.form.submit()">
+                <select name="filtro_estatus" id="filtro_estatus" onchange="this.form.submit()"  class="w-48">
                     <option value="" {{ $filtroEstatus == '' ? 'selected' : '' }}>Todos</option>
                     <option value="1" {{ $filtroEstatus == '1' ? 'selected' : '' }}>Abierto</option>
                     <option value="2" {{ $filtroEstatus == '2' ? 'selected' : '' }}>Pendiente</option>
@@ -19,7 +19,9 @@
                 </select>
                 <!-- Botón para eliminar el filtro si está presente -->
                 @if ($filtroEstatus)
-                    <x-primary-button type="button" onclick="window.location='{{ route('vacantes.index') }}'" class="ml-2">Eliminar Filtro</x-primary-button>
+                    <button type="button" onclick="window.location='{{ route('vacantes.index') }}'" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700 ">
+                        <i class="fa-solid fa-filter-circle-xmark fa-lg"></i>
+                    </button>                
                 @endif
             </form>
 
