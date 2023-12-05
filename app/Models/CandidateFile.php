@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CandidateFile extends Model
 {
     //use HasFactory;
+    protected $connection = 'chavez';
+
 
     protected $table = 'candidate_files'; // Nombre de la tabla en la base de datos "chavez"
 

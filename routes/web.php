@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\VacanteController;
+use App\Http\Controllers\GraficaController;
+
 
 
 
@@ -35,10 +37,13 @@ Route::middleware('auth')->group(function () {
 
 // Candidatos Index
 //Route::get('/candidatos', [AppController::class,'index1'])->name('candidatos.index');
+
 Route::get('/candidatos', [CandidatoController::class, 'index1'])->name('candidatos.index');
+Route::get('/candidatos/{idioma}', [CandidatoController::class, 'index1'])->name('candidatos.index.idioma');
 
 // Graficas Index
-Route::get('/graficas', [AppController::class,'index2'])->name('graficas.index');
+Route::get('/graficas', [GraficaController::class, 'index2'])->name('graficas.index');
+Route::post('/get-chart-data', [GraficaController::class, 'getChartData']);
 
 // Vacantes index
 Route::get('/vacantes', [VacanteController::class, 'index3'])->name('vacantes.index');

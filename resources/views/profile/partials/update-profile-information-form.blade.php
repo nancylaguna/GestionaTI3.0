@@ -6,7 +6,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Actualiza tu nombre") }}
+            {{ __('Actualiza tu nombre') }}
         </p>
     </header>
 
@@ -44,11 +44,10 @@
                 >{{ __('Actualizado') }}</p>
             @endif
         </div>
+
         <!-- <x-primary-button  class="block mt-3 text-md text-teal-700 dark:text-teal-800 hover:text-teal-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 text-center mr-20" >
                 {{ __('Cambiar contraseña') }}
-        </x-primary-button>
-     -->
+        </x-primary-button>-->
     </form>
 
-   
 </section>

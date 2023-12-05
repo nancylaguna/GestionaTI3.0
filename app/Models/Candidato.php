@@ -31,5 +31,10 @@ class Candidato extends Model
     {
         return $this->hasOne(CandidateFile::class, 'candidate_id', 'id');
     }
-}
 
+    // Define la relación con la tabla 'applications'
+    public function applications()
+    {
+        return $this->hasMany(VacanteApplications::class, 'candidate_id', 'id');
+    }
+}

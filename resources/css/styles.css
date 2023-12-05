@@ -30,3 +30,17 @@ body {
     overflow: scroll;
 }
 
+    .form-container {
+        border-radius: 8px;
+        overflow: hidden; /* Bordes redondeados aplicados correctamente */
+        margin-bottom: 10px; /* Ajustar margen  */
+    }
+
+    /* Aplica bordes redondeados al elemento select dentro del formulario */
+    #filtro_estatus {
+        border-radius: 8px;
+        padding: 8px; /* Ajusta relleno */
+    }
+
+
+

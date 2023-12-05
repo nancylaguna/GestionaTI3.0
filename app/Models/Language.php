@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Language extends Model
 {
    // use HasFactory;
-    protected $table = 'languages'; // Nombre de la tabla en la base de datos "chavez"
+   protected $connection = 'chavez';
+
+   protected $table = 'languages'; // Nombre de la tabla en la base de datos "chavez"
 
     // Define la relación con los candidatos
     public function candidates()

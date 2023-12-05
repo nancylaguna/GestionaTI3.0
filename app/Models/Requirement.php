@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Requirement extends Model
 {
    // use HasFactory;
+   protected $connection = 'chavez';
+
     protected $table = 'requirements'; // Nombre de la tabla en la base de datos "chavez"
 
     // Define la relación con los candidatos

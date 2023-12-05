@@ -6,18 +6,32 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'GestionaTI') }}</title>
-
+        <link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <!-- Fonts -->
         <script src="https://kit.fontawesome.com/646c794df3.js"></script>
-
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         
+        <!-- Charts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js "></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+<!-- Incluye la biblioteca Select2 desde un CDN -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<!-- Incluye Font Awesome en tu proyecto -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-pz5yBUJzJLAe8N0pkDlb8GpP1Nj+JQ8SU3DE/2xaBIp6L0TSvZKXqfD1et+zmDsMv2HXaflOHKeu0uPgeWJtwQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Fonts -->
+
+
+
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/css/styles.css','resources/js/app.js','resources/js/desp_pass.js'])
-        <!-- <link rel="{{ asset('build/assets/app-c0a89d41.css') }}" href="style.css"> -->
+        @vite(['resources/css/app.css', 'resources/css/styles.css','resources/js/app.js','resources/js/desp_pass.js','resources/js/graficas.js','resources/js/candidatosfiltros.js','resources/js/candidatosidioma.js','resources/js/candidatosvacantes.js'])
+        <!-- <link rel="{{ asset('build/assets/app-c0a89d41.css') }}" href="style.css"> -->z
     </head>
 
     <body class="font-sans antialiased"> <!-- Primer contenedor --> 

@@ -4,41 +4,74 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Candidato;
+use App\Models\Vacante;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 class CandidatoController extends Controller
 {
-    public function index1()
-{
+    public function index1(Request $request)
+    {
+        // Obtener el valor del parámetro 'idioma' de la solicitud
+        $idioma = $request->input('idioma');
 
-    // Utiliza Eloquent para obtener los candidatos con relaciones y evita duplicados basados en el nombre
-    $candidatos = Candidato::with(['languages', 'requirements', 'files'])
-        ->orderBy('id', 'asc') // Ordena por ID en orden ascendente para obtener el primer ID asignado
-        ->get();
+        // Obtener las vacantes para el filtro de vacantes
+        $vacantes = Vacante::all(); // Asegúrate de importar la clase Vacante
 
-    $candidatosAgrupados = [];
+        // Obtener candidatos distintos por nombre con relaciones y paginar los resultados
+        $candidatosQuery = Candidato::select(
+            DB::raw('MIN(id) as min_id'),
+            'name'
+        )->with(['languages', 'requirements', 'files'])
+            ->groupBy('name')
+            ->when($idioma, function ($query) use ($idioma) {
+                $query->whereHas('languages', function ($query) use ($idioma) {
+                    $query->where('name', $idioma);
+                });
+            })
+            ->orderBy('min_id', 'asc');
 
-    foreach ($candidatos as $candidato) {
-        $candidatoNombre = $candidato->name;
+        // Aplicar el filtro por vacante
+        $vacanteId = $request->input('vacante');
+        if ($vacanteId) {
+            $candidatosQuery->whereHas('applications.vacante', function ($query) use ($vacanteId) {
+                $query->where('id', $vacanteId);
+            });
+        }
 
-        // Agrupa los candidatos por nombre
-        $candidatosAgrupados[$candidatoNombre][] = [
-            'id' => $candidato->id,
-            'nombre' => $candidatoNombre,
-            'idiomas' => $candidato->languages->pluck('name')->unique()->toArray(),
-            'requerimientos' => $candidato->requirements->pluck('name')->unique()->toArray(),
-            'cv_url' => $candidato->files ? $candidato->files->url : null,
-        ];
+        // Obtener la paginación de los resultados
+        $candidatos = $candidatosQuery->paginate(10);
+
+        // Obtener la información completa de cada candidato
+        $candidatosFinales = $candidatos->map(function ($candidato) {
+            $candidatoCompleto = Candidato::with(['languages', 'requirements', 'files'])
+                ->where('name', $candidato->name)
+                ->orderBy('id', 'asc')
+                ->first();
+
+            return [
+                'id' => $candidatoCompleto->id,
+                'nombre' => $candidatoCompleto->name,
+                'idiomas' => $candidatoCompleto->languages->pluck('name')->unique()->toArray(),
+                'requerimientos' => $candidatoCompleto->requirements->pluck('name')->unique()->toArray(),
+                'cv_url' => optional($candidatoCompleto->files)->url,
+            ];
+        });
+
+        // Crear una instancia de LengthAwarePaginator
+        $paginador = new LengthAwarePaginator(
+            $candidatosFinales->all(),
+            $candidatos->total(),
+            $candidatos->perPage(),
+            $candidatos->currentPage(),
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
+
+        if ($request->ajax()) {
+            return view('candidatos.table', ['candidatos' => $candidatos])->render();
+        }
+
+        // Resto del código para el caso de solicitud normal
+        return view('candidatos.index', ['candidatos' => $paginador, 'vacantes' => $vacantes]);
     }
-
-    // Selecciona el primer candidato de cada grupo
-    $candidatosFinales = [];
-    foreach ($candidatosAgrupados as $nombre => $candidatosGrupo) {
-        $primerCandidato = reset($candidatosGrupo);
-        $candidatosFinales[$nombre] = $primerCandidato;
-    }
-
-    return view('candidatos.index', ['candidatos' => $candidatosFinales]);
-}
-
-
 }
