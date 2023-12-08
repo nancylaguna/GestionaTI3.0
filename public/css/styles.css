@@ -41,6 +41,12 @@ body {
         border-radius: 8px;
         padding: 8px; /* Ajusta relleno */
     }
+    #idioma, #vacante {
+        border-radius: 8px;
+        padding: 8px; /* Ajusta relleno */
+
+    }
+
 
 
 

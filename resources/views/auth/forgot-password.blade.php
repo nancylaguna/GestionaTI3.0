@@ -1,7 +1,7 @@
 <!-- Vista para cuando olvidan la contraseña -->
 <x-guest-layout>
     <div class="w-4/5">
-        <div class="mt-4 block font-medium text-2xl text-gray-500 dark:text-gray-700">
+        <div class="mt-4 block font-medium text-2xl text-gray-500">
             {{ __('¿Olvidaste tu contraseña?') }}
         </div>
         <br>
@@ -16,7 +16,8 @@
             <!-- Campo para el email -->
             <div >
                 <x-input-label for="email" :value="__('Email')" class="text-md"/>
-                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+
+                <x-text-input id="email" class="block pr-10 mt-1 w-full h-10 border border-teal-700 rounded-md" type="email" name="email" :value="old('email')" required autofocus />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
@@ -29,7 +30,7 @@
         </form>
 
         @if (Route::has('login'))
-        <a style="text-decoration: none; " class="block mt-3 text-md text-teal-700 dark:text-teal-800 hover:text-teal-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 text-center"  href="{{ route('login') }}">
+        <a style="text-decoration: none; " class="block mt-3 text-md text-teal-700 hover:text-teal-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center"  href="{{ route('login') }}">
             {{ __('< Regresar') }}
         </a>
         @endif

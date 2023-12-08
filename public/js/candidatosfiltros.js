@@ -1,10 +1,12 @@
+//candidatosfiltros.js
 document.addEventListener('DOMContentLoaded', function () {
     // Obtener referencia a los campos de selección
     var idiomaSelect = document.getElementById('idioma');
     var vacanteSelect = document.getElementById('vacante');
+    var lugarResidenciaSelect = document.getElementById('lugar_residencia');
 
     // Agregar un evento de cambio a los campos de selección
-    [idiomaSelect, vacanteSelect].forEach(function (select) {
+    [idiomaSelect, vacanteSelect, lugarResidenciaSelect].forEach(function (select) {
         if (select) {
             select.addEventListener('change', function () {
                 // Llamar a la función para manejar la lógica del formulario y limpiar filtros

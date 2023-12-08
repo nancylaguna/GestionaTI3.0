@@ -11,7 +11,7 @@
                 <!-- Etiqueta del filtro -->
                 <label for="filtro_estatus">Estatus:</label>
                 <!-- Menú desplegable de opciones de filtro -->
-                <select name="filtro_estatus" id="filtro_estatus" onchange="this.form.submit()"  class="w-48">
+                <select name="filtro_estatus" id="filtro_estatus" onchange="this.form.submit()"  class="w-32 h-10 border border-teal-700">
                     <option value="" {{ $filtroEstatus == '' ? 'selected' : '' }}>Todos</option>
                     <option value="1" {{ $filtroEstatus == '1' ? 'selected' : '' }}>Abierto</option>
                     <option value="2" {{ $filtroEstatus == '2' ? 'selected' : '' }}>Pendiente</option>
@@ -19,9 +19,14 @@
                 </select>
                 <!-- Botón para eliminar el filtro si está presente -->
                 @if ($filtroEstatus)
-                    <button type="button" onclick="window.location='{{ route('vacantes.index') }}'" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700 ">
+                    <button 
+                        type="button" 
+                        onclick="window.location='{{ route('vacantes.index') }}'" 
+                        class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700"
+                        title="Eliminar filtro"
+                    >
                         <i class="fa-solid fa-filter-circle-xmark fa-lg"></i>
-                    </button>                
+                    </button>
                 @endif
             </form>
 

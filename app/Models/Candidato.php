@@ -37,4 +37,9 @@ class Candidato extends Model
     {
         return $this->hasMany(VacanteApplications::class, 'candidate_id', 'id');
     }
+    // En el modelo Candidato
+protected $fillable = [
+    'name', 'email', 'address', // Asegúrate de incluir 'address'
+];
+
 }

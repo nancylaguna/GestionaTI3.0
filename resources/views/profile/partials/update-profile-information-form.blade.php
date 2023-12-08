@@ -1,11 +1,12 @@
-<section>
+<!-- update-profile-information-from.blade.php -->
+<section id="profile-section">
     <header>
         <!-- Apartado para actualizar nombre -->
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Perfil') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-md text-gray-600 dark:text-gray-400">
             {{ __('Actualiza tu nombre') }}
         </p>
     </header>
@@ -19,20 +20,28 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Nombre')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-2/3" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <label for="name" class="text-slate-600	">Nombre:</label>
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-2/3 h-10" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2 ml-2" :messages="$errors->get('name')" />
         </div>
 
         <!-- Apartado para que aparezca el correo sin que se pueda modificar -->
         <div>
-            <x-input-label for="email" :value="__('Correo')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-2/3 bg-stone-300" :value="$user->email" disabled/>
+            <label for="email" class="text-slate-600	">Correo:</label>
+            <x-text-input 
+                id="email" 
+                name="email" 
+                type="email" 
+                class="mt-1 block w-2/3 bg-stone-300 h-10" 
+                :value="$user->email" 
+                disabled
+                title="No se puede modificar el email"
+            />
             <!-- El atributo "disabled" deshabilita el campo de correo electrónico -->
         </div>
         <!-- Boton para actualizar el nombre -->
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Actualizar') }}</x-primary-button>
+        <x-primary-button title="Actualizar nombre">{{ __('Actualizar') }}</x-primary-button>
             <!-- Actualizar el nombre -->
             @if (session('status') === 'profile-updated')
                 <p

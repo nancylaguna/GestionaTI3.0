@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('login') }}" class="w-4/5">
         @csrf
         
-        <div class="mt-6 block font-medium text-4xl text-gray-500 dark:text-gray-700">
+        <div class="mt-6 block font-medium text-4xl text-gray-500">
             {{ __('Bienvenido a ') }}
             <br>
             {{ __('GestionaTI') }}
@@ -16,7 +16,7 @@
         <!-- Email -->
         <div>
             <x-input-label class="text-md" for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full h-10 border border-teal-700 rounded-md" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
         <div class="my-8"></div>
@@ -25,8 +25,8 @@
             <!-- Etiqueta para la entrada de contraseña con clase de texto grande -->
             <x-input-label class="text-md" for="password" :value="__('Contraseña')" />
             <div class="relative">
-    <!-- Campo de entrada de contraseña con margen derecho para hacer espacio al botón -->
-    <x-text-input id="password" class="block pr-10 mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            <!-- Campo de entrada de contraseña con margen derecho para hacer espacio al botón -->
+            <x-text-input id="password" class="block pr-10 mt-1 w-full h-10 border border-teal-700 rounded-md" type="password" name="password" required autocomplete="current-password" />
 
     <!-- Botón para mostrar/ocultar la contraseña -->
     <button
@@ -73,7 +73,7 @@
 
         @if (Route::has('password.request'))
             <!-- Enlace para restablecer la contraseña -->
-            <a href="{{ route('password.request') }}" class="block mt-3 text-md text-teal-700 dark:text-teal-800 hover:text-teal-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 text-center" >
+            <a href="{{ route('password.request') }}" class="block mt-3 text-md text-teal-700 hover:text-teal-900  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center" >
                 {{ __('¿Olvidaste tu contraseña?') }}
             </a>
         @endif

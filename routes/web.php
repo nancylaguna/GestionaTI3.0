@@ -25,9 +25,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/dashboard', function () {
+/*Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,7 +39,6 @@ Route::middleware('auth')->group(function () {
 //Route::get('/candidatos', [AppController::class,'index1'])->name('candidatos.index');
 
 Route::get('/candidatos', [CandidatoController::class, 'index1'])->name('candidatos.index');
-Route::get('/candidatos/{idioma}', [CandidatoController::class, 'index1'])->name('candidatos.index.idioma');
 
 // Graficas Index
 Route::get('/graficas', [GraficaController::class, 'index2'])->name('graficas.index');

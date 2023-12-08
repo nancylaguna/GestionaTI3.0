@@ -7,13 +7,22 @@
 
         <title>{{ config('app.name', 'GestionaTI') }}</title>
 
+        <!-- Tailwind CSS Link -->
+        <script src="https://cdn.tailwindcss.com"></script>
+      
+
+        <!-- Fontawesome Link -->
+        <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-        <!-- <link rel="{{ asset('build/assets/app-c0a89d41.css') }}" href="style.css"> -->
+        <!-- Para el archivo CSS -->
+        <link rel="stylesheet" href="{{ asset('css/app.css')}}">
+
+        <!-- Para el archivo JavaScript -->
+        <script type="text/javascript" src="{{ asset('js/app.js')}}"></script>
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:flex-row justify-between items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">

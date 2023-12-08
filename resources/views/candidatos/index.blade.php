@@ -7,21 +7,26 @@
             <form id="filtroForm" action="{{ route('candidatos.index') }}" method="GET" class="mb-4 form-container ">
                 <!-- Formulario para el filtro de idioma -->
                 <label for="idioma">Idioma:</label>
-                <select id="idioma" name="idioma" >
+                <select id="idioma" name="idioma" class="w-24 h-10 border border-teal-700">
                     <option value="">Todos</option>
                     <option value="espanol" @if(request('idioma') === 'espanol') selected @endif>Español</option>
                     <option value="english" @if(request('idioma') === 'english') selected @endif>Inglés</option>
                 </select>
                 <!-- Botón para eliminar el filtro de idioma -->
                 @if(request('idioma'))
-                    <button type="button" id="eliminarFiltroIdioma" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700">
+                   <button 
+                        type="button" 
+                        id="eliminarFiltroIdioma" 
+                        class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700"
+                        title="Eliminar filtro"
+                    >
                         <i class="fa-solid fa-filter-circle-xmark fa-lg"></i>
                     </button>
                 @endif
 
                 <!-- Formulario para el filtro de vacante -->
                 <label for="vacante">Vacante:</label>
-                <select id="vacante" name="vacante" class="w-48">
+                <select id="vacante" name="vacante" class="w-48 h-10 border border-teal-700">
                     <option value="">Todas</option>
                     @foreach($vacantes as $vacante)
                         <option value="{{ $vacante->id }}" @if(request('vacante') == $vacante->id) selected @endif>
@@ -31,7 +36,12 @@
                 </select>
                 <!-- Botón para eliminar el filtro de vacante -->
                 @if(request('vacante'))
-                    <button type="button" id="eliminarFiltroVacante" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700 ">    
+                <button 
+                        type="button" 
+                        id="eliminarFiltroVacante" 
+                        class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700"
+                        title="Eliminar filtro"
+                    >
                         <i class="fa-solid fa-filter-circle-xmark fa-lg"></i>
                     </button>
                 @endif
