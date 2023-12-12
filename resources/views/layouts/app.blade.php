@@ -1,4 +1,5 @@
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"> 
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -6,12 +7,22 @@
 
         <title>{{ config('app.name', 'GestionaTI') }}</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        
         <!-- Font Awesome (via CDN) -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">        
 
         <!-- Font Awesome (via Kit) -->
         <script src="https://kit.fontawesome.com/646c794df3.js"></script>
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+        <!-- Select2 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" integrity="sha384-q95KANd/HLtLAg7eqtCf62rL2z5Ny8bkFCDLrlOZjbIljpIMDYbLIRMRQd6DjNJd" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js" integrity="sha384-0Ld6c5En1K3eIO/1zv+bncfj7Z5ybFoIEP2Vfu/W5F3tK2V1sO3kC6KvFDZlQaZa" crossorigin="anonymous"></script>
 
         <!-- Tailwind CSS Link -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -20,16 +31,20 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Para el archivo CSS -->
+        <!-- Archivo CSS -->
         <link rel="stylesheet" href="{{ asset('css/app.css')}}">
         <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
 
-        <!-- Para el archivo JavaScript -->
+        <!-- Archivo JavaScript -->
         <script type="text/javascript" src="{{ asset('js/app.js')}}"></script>
         <script type="text/javascript" src="{{ asset('js/candidatosfiltros.js')}}"></script>
         <script type="text/javascript" src="{{ asset('js/desp_pass.js')}}"></script>
         <script type="text/javascript" src="{{ asset('js/graficas.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('js/municipios.js')}}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+         <!-- CDN para Charts -->
+         <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
     </head>
 
     <body class="font-sans antialiased"> 
@@ -45,18 +60,21 @@
             <div class="my-12"></div>
     
             <!-- Botones para cambiar de ventana -->
+
+            <!-- Boton para Candidatos -->
             <a href="{{ route('candidatos.index') }}" 
                 @class([
                     'inline-flex items-center px-4 py-2 rounded-md text-xl uppercase tracking-widest mt-4 w-56 mx-4 justify-center bg-teal-600 h-20',
                     'bg-teal-700 text-white dark:bg-teal-700' => request()->routeIs('candidatos.index'),
                     'inline-flex items-center px-4 py-2 bg-transparent rounded-md text-xl text-white uppercase tracking-widest mt-4 w-56 mx-4 justify-center bg-teal-600 h-20 hover:bg-teal-700' => !request()->routeIs('candidatos.index'),
                 ])>
-                <i class="fas fa-chart-bar"></i> &nbsp;{{ __(' Candidatos') }}
+                <i class="fa-solid fa-users"></i> &nbsp;{{ __(' Candidatos') }}
             </a>
 
             <!-- Espacio -->
             <div class="my-2"></div>
 
+            <!-- Boton para Graficas -->
             <a href="{{ route('graficas.index') }}" 
                 @class([
                     'inline-flex items-center px-4 py-2 rounded-md text-xl uppercase tracking-widest mt-4 w-56 mx-4 justify-center bg-teal-600 h-20',
@@ -70,6 +88,7 @@
             <!-- Espacio -->
             <div class="my-2"></div>
 
+            <!-- Boton para Vacantes -->
             <a href="{{ route('vacantes.index') }}" 
                 @class([
                     'inline-flex items-center px-4 py-2 rounded-md text-xl uppercase tracking-widest mt-4 w-56 mx-4 justify-center bg-teal-600 h-20',
@@ -89,17 +108,17 @@
                     <!-- Opciones de Perfil y Cerrar Sesión Menú desplegable -->
                     <div class="container mx-auto p-1 space-x-8 sm:-my-px sm:flex">
                         <div class="relative inline-block text-left">
-                        <button 
-                            class="inline-flex items-center px-2 py-2 border border-transparent text-md leading-4 font-medium rounded-md text-black dark:text-black bg-white dark:bg-black hover:text-black dark:hover:text-black focus:outline-none transition ease-in-out duration-150"
-                            title="Ver menú"
-                        >
-                            <div>{{ Auth::user()->name }}</div>
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
+                            <button 
+                                class="inline-flex items-center px-2 py-2 border border-transparent text-md leading-4 font-medium rounded-md text-black dark:text-black bg-white dark:bg-black hover:text-black dark:hover:text-black focus:outline-none transition ease-in-out duration-150"
+                                title="Ver menú"
+                            >
+                                <div>{{ Auth::user()->name }}</div>
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </button>
 
                             <!-- Contenido del menú -->
                             <div class="hidden absolute right-0 mt-2 w-56 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg">
@@ -114,7 +133,6 @@
                                     </button>
                                 </form>            
                             </div>
-
                         </div>
                     </div>
                     <p class="hidden sm:flex text-black dark:text-black ml-10">Admin</p>

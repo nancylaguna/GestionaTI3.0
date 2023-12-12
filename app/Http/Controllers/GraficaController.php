@@ -3,28 +3,44 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Candidato;
 use App\Models\Language;
-use App\Models\Candidate;
-use Illuminate\Support\Facades\DB;
 
 class GraficaController extends Controller
 {
-    public function index2()
+    /**
+     * Muestra la vista de la página de gráficos con datos filtrados por idioma.
+     */
+    public function index2(Request $request)
     {
-        // Lógica para mostrar la vista de gráficas
-        return view('graficas.index');
+        // Obtener el idioma seleccionado del filtro
+        $selectedLanguages = $request->input('idiomas');
+    
+        // Verificar si $selectedLanguages es nulo y convertirlo en un array vacío si es necesario
+        $selectedLanguages = $selectedLanguages ?? [];
+    
+        // Obtener datos según la selección del filtro
+        $data = $this->getData($selectedLanguages);
+    
+        // Pasar los datos a la vista
+        return view('graficas.index', compact('data', 'selectedLanguages'));
     }
-
-    public function getChartData()
+    
+    /**
+     * Obtiene los datos de candidatos según los idiomas seleccionados.
+     */
+    private function getData($selectedLanguages)
     {
-        // Obtener datos para el gráfico desde la base de datos
-        $data = DB::table('candidate_language')
-            ->join('languages', 'candidate_language.language_id', '=', 'languages.id')
-            ->select('languages.name as language', DB::raw('COUNT(*) as total'))
-            ->groupBy('languages.name')
-            ->get();
-
-        return response()->json($data);
+        $data = [];
+    
+        foreach ($selectedLanguages as $language) {
+            $query = Candidato::query();
+            $query->whereHas('languages', function ($query) use ($language) {
+                $query->where('name', $language);
+            });
+            $data[$language] = $query->count();
+        }
+    
+        return $data;
     }
 }
-

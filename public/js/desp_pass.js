@@ -1,3 +1,4 @@
+//JS para la seccion de perfil para mostrar/ocultar la seccion de contraseña
 document.addEventListener('DOMContentLoaded', function () {
     const passwordSection = document.getElementById('change-password-section');
     const profileSection = document.querySelector('section');
@@ -50,13 +51,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const newPassword = passwordForm.querySelector('#password').value;
         const confirmPassword = passwordForm.querySelector('#password_confirmation').value;
 
+        //Validar que la contraseña nueva cumpla con los requisitos minimos
         const validationMessage = isValidCurrentPassword(currentPassword);
         if (validationMessage !== 'valid') {
             alert(validationMessage);
             event.preventDefault();
+            //Que la longitud sea a partir de 8
         } else if (newPassword.length < 8) {
             alert('La nueva contraseña debe tener al menos 8 caracteres.');
             event.preventDefault();
+            //Que las contraseñas nueva y la repeticion coincidan
         } else if (newPassword !== confirmPassword) {
             alert('Las contraseñas no coinciden.');
             event.preventDefault();
@@ -71,12 +75,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para validar la contraseña actual
     function isValidCurrentPassword(password) {
+        //Minimo una mayuscula
         if (!/[A-Z]/.test(password)) {
             return 'La contraseña actual debe contener al menos una mayúscula.';
         }
+        //Minimo un caracter especial
         if (!/[\W_]/.test(password)) {
             return 'La contraseña actual debe contener al menos un carácter especial.';
         }
+        //Minimo 8 caracteres
         if (password.length < 8) {
             return 'La contraseña actual debe tener al menos 8 caracteres.';
         }

@@ -11,12 +11,13 @@ use Illuminate\View\View;
 class EmailVerificationPromptController extends Controller
 {
     /**
-     * Display the email verification prompt.
+     * Muestra el aviso de verificación de correo electrónico.
      */
     public function __invoke(Request $request): RedirectResponse|View
     {
+        // Verifica si el usuario ya ha verificado su correo electrónico.
         return $request->user()->hasVerifiedEmail()
-                    ? redirect()->intended(RouteServiceProvider::HOME)
-                    : view('auth.verify-email');
+            ? redirect()->intended(RouteServiceProvider::HOME)
+            : view('auth.verify-email');
     }
 }

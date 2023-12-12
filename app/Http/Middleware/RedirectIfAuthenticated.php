@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class RedirectIfAuthenticated
 {
     /**
-     * Handle an incoming request.No permite que el usuario acceda a ciertas rutas
+     * Maneja una solicitud entrante. No permite que el usuario acceda a ciertas rutas.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
