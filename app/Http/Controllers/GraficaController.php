@@ -11,13 +11,15 @@ class GraficaController extends Controller
     /**
      * Muestra la vista de la página de gráficos con datos filtrados por idioma.
      */
-    public function index2(Request $request)
+    public function index2(Request $request, $selectedLanguages = [])
     {
         // Obtener el idioma seleccionado del filtro
-        $selectedLanguages = $request->input('idiomas');
+        $selectedLanguages = $request->input('idiomas') ?? [];    
     
-        // Verificar si $selectedLanguages es nulo y convertirlo en un array vacío si es necesario
-        $selectedLanguages = $selectedLanguages ?? [];
+        // Si no hay idiomas seleccionados, predeterminadamente seleccionar ambos
+        if (empty($selectedLanguages)) {
+            $selectedLanguages = ['espanol', 'english'];
+        }
     
         // Obtener datos según la selección del filtro
         $data = $this->getData($selectedLanguages);

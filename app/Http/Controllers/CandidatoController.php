@@ -40,7 +40,7 @@ class CandidatoController extends Controller
         }
 
         // Obtener la paginación de los resultados
-        $candidatos = $candidatosQuery->paginate(10);
+        $candidatos = $candidatosQuery->paginate(5);
 
         // Obtener la información completa de cada candidato
         $candidatosFinales = $candidatos->map(function ($candidato) {

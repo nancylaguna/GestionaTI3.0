@@ -1,51 +1,46 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'GestionaTI') }}</title>
 
-        <title>{{ config('app.name', 'GestionaTI') }}</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        
-        <!-- Font Awesome (via CDN) -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">        
+    <!-- Font Awesome (via CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 
-        <!-- Font Awesome (via Kit) -->
-        <script src="https://kit.fontawesome.com/646c794df3.js"></script>
+    <!-- Font Awesome (via Kit) -->
+    <script src="https://kit.fontawesome.com/646c794df3.js"></script>
 
-        <!-- jQuery -->
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-        <!-- Select2 -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" integrity="sha384-q95KANd/HLtLAg7eqtCf62rL2z5Ny8bkFCDLrlOZjbIljpIMDYbLIRMRQd6DjNJd" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js" integrity="sha384-0Ld6c5En1K3eIO/1zv+bncfj7Z5ybFoIEP2Vfu/W5F3tK2V1sO3kC6KvFDZlQaZa" crossorigin="anonymous"></script>
+    <!-- CDN para Charts -->
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
 
-        <!-- Tailwind CSS Link -->
-        <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <!-- Tailwind CSS Link -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        <!-- Bunny.net Fonts -->        
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <!-- Bunny.net Fonts -->        
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Archivo CSS -->
-        <link rel="stylesheet" href="{{ asset('css/app.css')}}">
-        <link rel="stylesheet" href="{{ asset('css/styles.css')}}">
+    <!-- Archivo CSS -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
-        <!-- Archivo JavaScript -->
-        <script type="text/javascript" src="{{ asset('js/app.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('js/candidatosfiltros.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('js/desp_pass.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('js/graficas.js')}}"></script>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Archivo JavaScript -->
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/candidatosfiltros.js') }}"></script>
+    <script src="{{ asset('js/desp_pass.js') }}"></script>
+    <script src="{{ asset('js/graficas.js') }}"></script>
 
-         <!-- CDN para Charts -->
-         <script src="https://www.gstatic.com/charts/loader.js"></script>
-        <script src="https://www.gstatic.com/charts/loader.js"></script>
-    </head>
+</head>
 
     <body class="font-sans antialiased"> 
         <!-- Primer contenedor --> 
