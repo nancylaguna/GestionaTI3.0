@@ -28,12 +28,6 @@ class PasswordController extends Controller
                 'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])/', // Asegura que la nueva contraseña tenga al menos una mayúscula, un número y un carácter especial
                 Rule::notIn([$user->password]), // Asegura que la nueva contraseña no sea igual a la anterior
             ],
-        ],
-        [
-            'password.regex' => 'La contraseña debe contener al menos una mayúscula, un número y un carácter especial.',
-            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
-            'password.not_in' => 'La contraseña no puede ser igual a la contraseña anterior.',
-            'password.required' => 'La contraseña es obligatoria.',
         ]);
 
         $user->update([

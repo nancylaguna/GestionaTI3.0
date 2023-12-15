@@ -42,8 +42,10 @@
     <script src="{{ asset('js/desp_pass.js') }}"></script>
     <script src="{{ asset('js/graficas.js') }}"></script>
 
-    <!-- Agrega esto a tu vista antes del script de las gráficas -->
+    <!-- PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<!-- Agrega esto en la sección head de tu HTML -->
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 </head>
 

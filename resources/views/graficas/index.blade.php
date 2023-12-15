@@ -1,12 +1,4 @@
 <x-app-layout>
-    <!-- Estilo para ajustar el ancho del select2 -->
-    <style>
-        .js-example-basic-multiple,
-        .js-example-basic-single {
-            width: 30%;
-        }
-    </style>
-    
     <!-- Script para gráficas -->
     <script src="{{ asset('js/graficas.js') }}"></script>
 
@@ -20,7 +12,7 @@
             <!-- Etiqueta del formulario -->
             <label for="idiomas">Idiomas:</label>
             <!-- Selección múltiple para idiomas -->
-            <select id="idiomas" name="idiomas[]" class="js-example-basic-multiple" multiple="multiple">
+            <select id="idiomas" name="idiomas[]" class="js-example-basic-multiple w-48" multiple="multiple">
                 <!-- Opción para Español -->
                 <option value="espanol" {{ in_array('espanol', (array)$selectedLanguages) ? 'selected' : '' }}>Español</option>
                 <!-- Opción para Inglés -->
@@ -65,7 +57,7 @@
             <!-- Sección para mostrar la gráfica de Idiomas -->
             @if(!empty($selectedLanguages))
                 <!-- Contenedor para la gráfica de Idiomas -->
-                <div id="chart_div_idiomas" class="mr-3 ml-3">
+                <div id="chart_div_idiomas" class="mr-2">
                     <!-- Script para cargar la API de visualización y dibujar la gráfica de Idiomas -->
                     <script>
                         // Cargar la API de visualización y los paquetes necesarios
@@ -107,35 +99,59 @@
                 <!-- Script para descargar PDF de la gráfica de Idiomas -->
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        var downloadPdfIdiomasBtn = document.getElementById('downloadPdfIdiomasBtn');
+    var downloadPdfIdiomasBtn = document.getElementById('downloadPdfIdiomasBtn');
 
-                        if (downloadPdfIdiomasBtn) {
-                            downloadPdfIdiomasBtn.addEventListener('click', function () {
-                                var graficasContainer = document.getElementById('chart_div_idiomas'); 
+    if (downloadPdfIdiomasBtn) {
+        downloadPdfIdiomasBtn.addEventListener('click', function () {
+            var graficasContainer = document.getElementById('chart_div_idiomas'); 
 
-                                if (graficasContainer) {
-                                    var opt = {
-                                        margin:       10,
-                                        filename:     'graficas.pdf',
-                                        image:        { type: 'jpeg', quality: 0.98 },
-                                        html2canvas:  { scale: 2 },
-                                        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                                    };
+            if (graficasContainer) {
+                // Crear un nuevo elemento div para contener tanto la imagen como la gráfica
+                var containerDiv = document.createElement('div');
 
-                                    html2pdf().from(graficasContainer).set(opt).save();
-                                } else {
-                                    console.error('No se encontró el contenedor de la gráfica de Idiomas.');
-                                }
-                            });
-                        }
-                    });
+                // Encabezado con la imagen a la izquierda y "Gestionati" a la derecha
+                var header = document.createElement('header');
+                header.innerHTML = `
+                <div style="float: left;">
+                                            <img src="{{ asset('storage/img/th3codelogo.ico') }}" alt="Perfil" class="w-20 h-20 mb-8">
+                                        </div>
+                                        <div style="float: left; margin-top: 20px;">
+                                        <p style="font-weight: bold; font-size: larger; color: #008080;">Gestionati</p>
+                                        </div>
+                                        <div style="clear: both;"></div> <!-- Limpiar el float para que el texto aparezca más abajo -->
+                                      `;
+
+                // Agregar el encabezado al contenedor
+                containerDiv.appendChild(header);
+
+                // Agregar la gráfica al contenedor
+                containerDiv.appendChild(graficasContainer.cloneNode(true));
+
+                // Configurar opciones para la descarga del PDF
+                var opt = {
+                    margin:       10,
+                    filename:     'graficaIdioma.pdf',
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2 },
+                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
+                // Generar el PDF desde el contenedor que ahora contiene la imagen y la gráfica
+                html2pdf().from(containerDiv).set(opt).save();
+            } else {
+                console.error('No se encontró el contenedor de la gráfica de Idiomas.');
+            }
+        });
+    }
+});
+
                 </script>
             @endif
 
             <!-- Sección para mostrar la gráfica de Vacantes -->
             @if(!empty($selectedVacante))
                 <!-- Contenedor para la gráfica de Vacantes -->
-                <div id="chart_div_vacantes" class="mr-3 ml-3">
+                <div id="chart_div_vacantes" class="mr-2 ml-2">
                     <!-- Script para cargar la API de visualización y dibujar la gráfica de Vacantes -->
                     <script>
                         // Cargar la API de visualización y los paquetes necesarios
@@ -163,7 +179,7 @@
                             // Configurar las opciones del gráfico de Vacantes (pastel)
                             var optionsVacantes = {
                                 title: 'Candidatos por Vacante',
-                                width: 400,
+                                width: 450,
                                 height: 300,
                             };
 
@@ -190,14 +206,54 @@
                                 var graficasContainer = document.getElementById('chart_div_vacantes');
 
                                 if (graficasContainer) {
-                                    var opt = {
-                                        margin:       10,
-                                        filename:     'graficas.pdf',
-                                        image:        { type: 'jpeg', quality: 0.98 },
-                                        html2canvas:  { scale: 2 },
-                                        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                                    };
-                                    html2pdf().from(graficasContainer).set(opt).save();
+                                    // Obtener los nombres completos de las vacantes seleccionadas
+                                    var selectedVacanteNames = [];
+                                    var selectedVacanteOptions = document.querySelectorAll('#vacantes option:checked');
+                                    selectedVacanteOptions.forEach(function (option) {
+                                        selectedVacanteNames.push(option.text);
+                                    });
+
+                                    // Crear una estructura HTML consolidada para el PDF
+                                    var pdfContent = document.createElement('div');
+
+                                    // Encabezado con la imagen a la izquierda y "Gestionati" a la derecha
+                                    var header = document.createElement('header');
+                                    header.innerHTML = `
+                                        <div style="float: left;">
+                                            <img src="{{ asset('storage/img/th3codelogo.ico') }}" alt="Perfil" class="w-20 h-20 mb-8">
+                                        </div>
+                                        <div style="float: left; margin-top: 20px;">
+                                        <p style="font-weight: bold; font-size: larger; color: #008080;">Gestionati</p>
+                                        </div>
+                                        <div style="clear: both;"></div> <!-- Limpiar el float para que el texto aparezca más abajo -->
+                                    `;
+                                    pdfContent.appendChild(header);
+
+                                    // Clonar el contenedor de gráficos y añadirlo al documento
+                                    pdfContent.appendChild(graficasContainer.cloneNode(true));
+
+                                    // Contenido de las vacantes
+                                    pdfContent.innerHTML += `
+                                        <div style="margin-top:20px;">
+                                            <p style="font-weight: bold; font-size: larger;">Vacantes seleccionadas:</p>
+                                            <ul>
+                                                <li>${selectedVacanteNames.join('</li><li>')}</li>
+                                            </ul>
+                                        </div>
+                                    `;
+
+                                    // Esperar 2 segundos antes de generar el PDF (ajusta este tiempo según sea necesario)
+                                    setTimeout(function () {
+                                        var opt = {
+                                            margin: 10,
+                                            filename: 'graficaVacante.pdf',
+                                            image: { type: 'jpeg', quality: 0.98 },
+                                            html2canvas: { scale: 2 },
+                                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                        };
+
+                                        html2pdf().from(pdfContent).set(opt).save();
+                                    }, 2000); // Ajusta el tiempo de espera según sea necesario
                                 } else {
                                     console.error('No se encontró el contenedor de la gráfica de Vacantes.');
                                 }
