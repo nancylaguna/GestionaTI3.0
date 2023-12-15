@@ -7,7 +7,7 @@
         }
     </style>
     
-    <!-- Incluir script para gráficas -->
+    <!-- Script para gráficas -->
     <script src="{{ asset('js/graficas.js') }}"></script>
 
     <!-- Título de la página -->
@@ -19,30 +19,23 @@
         <form id="filtroForm" action="{{ route('graficas.index') }}" method="GET" class="mb-4 form-container">
             <!-- Etiqueta del formulario -->
             <label for="idiomas">Idiomas:</label>
-            
             <!-- Selección múltiple para idiomas -->
             <select id="idiomas" name="idiomas[]" class="js-example-basic-multiple" multiple="multiple">
                 <!-- Opción para Español -->
                 <option value="espanol" {{ in_array('espanol', (array)$selectedLanguages) ? 'selected' : '' }}>Español</option>
-
                 <!-- Opción para Inglés -->
                 <option value="english" {{ in_array('english', (array)$selectedLanguages) ? 'selected' : '' }}>Inglés</option>
             </select>
             
             <!-- Botón de envío del formulario de idiomas -->
             <button
-                type="submit"
-                id="filtroIdiomasBtn"
-                class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700"
-                title="Graficar idiomas"
-            >
+                type="submit" id="filtroIdiomasBtn" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700" title="Graficar idiomas">
                 <i class="fa-solid fa-filter"></i>
             </button>
 
             <!-- Etiqueta del formulario -->
             <label for="vacantes">Vacantes:</label>
-            
-            <!-- Selección para vacantes con select2 -->
+            <!-- Selección múltiple para vacantes -->
             <select id="vacantes" name="vacante[]" class="js-example-basic-multiple" multiple="multiple">
                 @foreach ($vacantes as $vacante)
                     <option value="{{ $vacante->id }}" {{ in_array($vacante->id, (array)old('vacante', $selectedVacante)) ? 'selected' : '' }}>
@@ -52,12 +45,7 @@
             </select>
             
             <!-- Botón de envío del formulario de vacante -->
-            <button
-                type="submit"
-                id="filtroVacanteBtn"
-                class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700"
-                title="Graficar vacantes"
-            >
+            <button type="submit" id="filtroVacanteBtn" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700" title="Graficar vacantes">
                 <i class="fa-solid fa-filter"></i>
             </button>
         </form>
@@ -72,11 +60,12 @@
                 console.log('Select2 initialization completed.');
             });
         </script>
+
         <div class="flex">
             <!-- Sección para mostrar la gráfica de Idiomas -->
             @if(!empty($selectedLanguages))
                 <!-- Contenedor para la gráfica de Idiomas -->
-                <div id="chart_div_idiomas" class="mr-4">
+                <div id="chart_div_idiomas" class="mr-3 ml-3">
                     <!-- Script para cargar la API de visualización y dibujar la gráfica de Idiomas -->
                     <script>
                         // Cargar la API de visualización y los paquetes necesarios
@@ -97,10 +86,9 @@
 
                             // Configurar las opciones del gráfico
                             var options = {
-                                title: 'Proporción de Candidatos por Idioma',
+                                title: 'Candidatos por Idioma',
                                 width: 400,
                                 height: 300,
-                                // Puedes ajustar otras opciones según tus preferencias
                             };
 
                             // Crear un objeto de gráfico de pastel y pasar los datos y opciones
@@ -109,12 +97,45 @@
                         }
                     </script>
                 </div>
+                <!-- Botón para descargar PDF de la gráfica de Idiomas -->
+                <div class="mt-4">
+                    <button id="downloadPdfIdiomasBtn" class="inline-flex items-center px-4 py-2 rounded-md text-sm font-medium text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:shadow-outline-teal active:bg-teal-800" title="Descargar PDF (Idiomas)">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </button>
+                </div>
+
+                <!-- Script para descargar PDF de la gráfica de Idiomas -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var downloadPdfIdiomasBtn = document.getElementById('downloadPdfIdiomasBtn');
+
+                        if (downloadPdfIdiomasBtn) {
+                            downloadPdfIdiomasBtn.addEventListener('click', function () {
+                                var graficasContainer = document.getElementById('chart_div_idiomas'); 
+
+                                if (graficasContainer) {
+                                    var opt = {
+                                        margin:       10,
+                                        filename:     'graficas.pdf',
+                                        image:        { type: 'jpeg', quality: 0.98 },
+                                        html2canvas:  { scale: 2 },
+                                        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                    };
+
+                                    html2pdf().from(graficasContainer).set(opt).save();
+                                } else {
+                                    console.error('No se encontró el contenedor de la gráfica de Idiomas.');
+                                }
+                            });
+                        }
+                    });
+                </script>
             @endif
 
             <!-- Sección para mostrar la gráfica de Vacantes -->
             @if(!empty($selectedVacante))
                 <!-- Contenedor para la gráfica de Vacantes -->
-                <div id="chart_div_vacantes" class="ml-2">
+                <div id="chart_div_vacantes" class="mr-3 ml-3">
                     <!-- Script para cargar la API de visualización y dibujar la gráfica de Vacantes -->
                     <script>
                         // Cargar la API de visualización y los paquetes necesarios
@@ -141,7 +162,7 @@
 
                             // Configurar las opciones del gráfico de Vacantes (pastel)
                             var optionsVacantes = {
-                                title: 'Número de Candidatos por Vacante',
+                                title: 'Candidatos por Vacante',
                                 width: 400,
                                 height: 300,
                             };
@@ -152,8 +173,39 @@
                         }
                     </script>
                 </div>
+                <!-- Botón para descargar PDF de la gráfica de Vacantes -->
+                <div class="mt-4">
+                    <button id="downloadPdfVacantesBtn" class="inline-flex items-center px-4 py-2 rounded-md text-sm font-medium text-white bg-teal-700 hover:bg-teal-800 focus:outline-none focus:shadow-outline-teal active:bg-teal-800" title="Descargar PDF (Vacantes)">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </button>
+                </div>
+
+                <!-- Script para descargar PDF de la gráfica de Vacantes -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var downloadPdfVacantesBtn = document.getElementById('downloadPdfVacantesBtn');
+
+                        if (downloadPdfVacantesBtn) {
+                            downloadPdfVacantesBtn.addEventListener('click', function () {
+                                var graficasContainer = document.getElementById('chart_div_vacantes');
+
+                                if (graficasContainer) {
+                                    var opt = {
+                                        margin:       10,
+                                        filename:     'graficas.pdf',
+                                        image:        { type: 'jpeg', quality: 0.98 },
+                                        html2canvas:  { scale: 2 },
+                                        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                    };
+                                    html2pdf().from(graficasContainer).set(opt).save();
+                                } else {
+                                    console.error('No se encontró el contenedor de la gráfica de Vacantes.');
+                                }
+                            });
+                        }
+                    });
+                </script>
             @endif
         </div>            
     </div>
-
 </x-app-layout>

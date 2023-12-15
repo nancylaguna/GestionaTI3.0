@@ -30,6 +30,8 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+
+
     <!-- Archivo CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -39,6 +41,9 @@
     <script src="{{ asset('js/candidatosfiltros.js') }}"></script>
     <script src="{{ asset('js/desp_pass.js') }}"></script>
     <script src="{{ asset('js/graficas.js') }}"></script>
+
+    <!-- Agrega esto a tu vista antes del script de las gráficas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
 </head>
 
@@ -77,7 +82,7 @@
                     'inline-flex items-center px-4 py-2 bg-transparent rounded-md text-xl text-white uppercase tracking-widest mt-4 w-56 mx-4 justify-center bg-teal-600 h-20 hover:bg-teal-700' => !request()->routeIs('graficas.index'),
                 ])>
                 <i class="fas fa-chart-bar"></i>
-                &nbsp;{{ __(' Graficas') }}
+                &nbsp;{{ __(' Gráficas') }}
             </a>
 
             <!-- Espacio -->
