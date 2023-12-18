@@ -14,7 +14,7 @@
             <x-input-label for="email" :value="__('Correo electrónico')" />
 
             <!-- Entrada de texto para el correo electrónico -->
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
+            <x-text-input id="email" class="block pr-10 mt-1 w-full h-10 border border-teal-700 rounded-md" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
 
             <!-- Mostrar errores relacionados con el correo electrónico -->
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -26,8 +26,7 @@
             <x-input-label for="password" :value="__('Contraseña')" />
 
             <!-- Entrada de texto para la nueva contraseña -->
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-
+            <x-text-input id="password" class="block pr-10 mt-1 w-full h-10 border border-teal-700 rounded-md" type="password" name="password" required autocomplete="new-password" />
             <!-- Mostrar errores relacionados con la contraseña -->
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -38,7 +37,7 @@
             <x-input-label for="password_confirmation" :value="__('Confirmar contraseña')" />
 
             <!-- Entrada de texto para confirmar la nueva contraseña -->
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+            <x-text-input id="password_confirmation" class="block pr-10 mt-1 w-full h-10 border border-teal-700 rounded-md"
                                 type="password"
                                 name="password_confirmation" required autocomplete="new-password" />
 

@@ -41,7 +41,6 @@
         </div>
 
 <!-- Campo para la nueva contraseña -->
-<!-- Campo para la nueva contraseña -->
 <div>
     <label for="password" class="text-slate-600">Nueva contraseña:</label>
     <div class="relative">
