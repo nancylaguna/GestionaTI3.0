@@ -29,10 +29,17 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validación de la solicitud
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => [
+                'required',
+                'confirmed',
+                Rules\Password::defaults(),
+                'min:8', // Asegura que la nueva contraseña tenga al menos 8 caracteres
+                'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])/', // Asegura que la nueva contraseña tenga al menos una mayúscula, un número y un carácter especial
+            ],
         ]);
 
         // Intenta restablecer la contraseña del usuario. Si tiene éxito, se
@@ -46,7 +53,7 @@ class NewPasswordController extends Controller
                     'password' => Hash::make($request->password),
                     'remember_token' => Str::random(60),
                 ])->save();
-
+                // Dispara el evento de restablecimiento de contraseña
                 event(new PasswordReset($user));
             }
         );

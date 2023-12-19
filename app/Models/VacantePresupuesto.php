@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VacantePresupuesto extends Model
 {
     //use HasFactory;
+    protected $connection = 'chavez';
 
     // Especifica la tabla que utilizará el modelo
     protected $table = 'additional_infos'; // Nombre de la tabla en la BD "chavez"

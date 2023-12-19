@@ -40,41 +40,38 @@
             <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
         </div>
 
-<!-- Campo para la nueva contraseña -->
-<div>
-    <label for="password" class="text-slate-600">Nueva contraseña:</label>
-    <div class="relative">
-        <x-text-input id="password" name="password" type="password" class="mt-1 block w-2/3 h-8 pr-10" autocomplete="new-password" />
-        <!-- Boton para ver la contraseña -->                
-        <button
-            type="button"
-            id="toggle-new-password"
-            class="absolute top-1/2 right-0 mt-2 mr-48 p-2 text-gray-500 cursor-pointer transform -translate-y-1/2"
-            style="z-index: 2;"
-            onclick="togglePassword('password')"
-        >
-            <img
-                src="{{ asset('storage/img/ver.ico') }}"
-                alt="Icono Ver"
-                class="w-1 h-2 mb-5"
-                style="width: 2rem; height: 2rem;"
-            />
-        </button>
-    </div>
-    <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
-    
-    <!-- Mensajes de validación en tiempo real -->
-    <div class="mt-2">
-        <p id="password-length-message" class="text-red-500"></p>
-        <p id="password-uppercase-message" class="text-red-500"></p>
-        <p id="password-special-char-message" class="text-red-500"></p>
-        <p id="password-number-message" class="text-red-500"></p>
-    </div>
-</div>
-
-
-
-
+        <!-- Campo para la nueva contraseña -->
+        <div>
+            <label for="password" class="text-slate-600">Nueva contraseña:</label>
+            <div class="relative">
+                <x-text-input id="password" name="password" type="password" class="mt-1 block w-2/3 h-8 pr-10" autocomplete="new-password" />
+                <!-- Boton para ver la contraseña -->                
+                <button
+                    type="button"
+                    id="toggle-new-password"
+                    class="absolute top-1/2 right-0 mt-2 mr-48 p-2 text-gray-500 cursor-pointer transform -translate-y-1/2"
+                    style="z-index: 2;"
+                    onclick="togglePassword('password')"
+                >
+                    <img
+                        src="{{ asset('storage/img/ver.ico') }}"
+                        alt="Icono Ver"
+                        class="w-1 h-2 mb-5"
+                        style="width: 2rem; height: 2rem;"
+                    />
+                </button>
+            </div>
+            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+            
+            <!-- Mensajes de validación en tiempo real -->
+            <div class="mt-2">
+                <p id="password-length-message" class="text-red-500"></p>
+                <p id="password-uppercase-message" class="text-red-500"></p>
+                <p id="password-special-char-message" class="text-red-500"></p>
+                <p id="password-number-message" class="text-red-500"></p>
+            </div>
+        </div>
+        
         <!-- Campo para repetir la contraseña -->
         <div>
             <label for="password_confirmation" class="text-slate-600">Confirma la contraseña:</label>

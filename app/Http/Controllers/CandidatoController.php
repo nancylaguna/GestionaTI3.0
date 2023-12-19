@@ -14,6 +14,9 @@ class CandidatoController extends Controller
     {
         // Obtener el valor del parámetro 'idioma' de la solicitud
         $idioma = $request->input('idioma');
+                
+        // Obtener el valor del parámetro 'estado' de la solicitud con base de datos nueva
+        //$estado = $request->input('estado');
 
         // Obtener las vacantes para el filtro de vacantes
         $vacantes = Vacante::all(); // Asegúrate de importar la clase Vacante
@@ -30,6 +33,14 @@ class CandidatoController extends Controller
                 });
             })
             ->orderBy('min_id', 'asc');
+
+            // Consultas adicionales a la base de datos 'aldo'
+            /*$candidatosQuery->when($estado, function ($query) use ($estado) {
+                $query->addSelect(['aldo_table_name.column1', 'aldo_table_name.column2'])
+                    ->join('aldo_table_name', 'candidatos.name', '=', 'aldo_table_name.name')
+                    ->where('aldo_table_name.estado', $estado);
+            })->onConnection('aldo'); // Especificar la conexión 'aldo'*/
+
 
         // Aplicar el filtro por vacante
         $vacanteId = $request->input('vacante');

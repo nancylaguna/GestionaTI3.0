@@ -7,7 +7,7 @@
 
     <!-- Contenedor ancho máximo y espaciado horizontal para los elementos principales -->
     <div class="py-2 max-w-6xl mx-auto sm:px-6 lg:px-8 space-y-6">
-        <!-- Formulario para el filtro de idioma -->
+        <!-- Formulario para el filtro de idioma, vacantes y habilidades -->
         <form id="filtroForm" action="{{ route('graficas.index') }}" method="GET" class="mb-4 form-container">
             <!-- Etiqueta del formulario -->
             <label for="idiomas">Idiomas:</label>
@@ -18,10 +18,9 @@
                 <!-- Opción para Inglés -->
                 <option value="english" {{ in_array('english', (array)$selectedLanguages) ? 'selected' : '' }}>Inglés</option>
             </select>
-            
+
             <!-- Botón de envío del formulario de idiomas -->
-            <button
-                type="submit" id="filtroIdiomasBtn" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700" title="Graficar idiomas">
+            <button type="submit" id="filtroIdiomasBtn" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700" title="Graficar idiomas">
                 <i class="fa-solid fa-filter"></i>
             </button>
 
@@ -35,11 +34,12 @@
                     </option>
                 @endforeach
             </select>
-            
+
             <!-- Botón de envío del formulario de vacante -->
             <button type="submit" id="filtroVacanteBtn" class="inline-flex items-center px-2 py-3 rounded-md text-sm text-white dark:text-white uppercase tracking-widest hover:bg-teal-700 dark:hover:bg-teal-700 bg-teal-700" title="Graficar vacantes">
                 <i class="fa-solid fa-filter"></i>
             </button>
+
         </form>
 
         <!-- Script para inicializar Select2 -->
@@ -99,52 +99,51 @@
                 <!-- Script para descargar PDF de la gráfica de Idiomas -->
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-    var downloadPdfIdiomasBtn = document.getElementById('downloadPdfIdiomasBtn');
+                        var downloadPdfIdiomasBtn = document.getElementById('downloadPdfIdiomasBtn');
 
-    if (downloadPdfIdiomasBtn) {
-        downloadPdfIdiomasBtn.addEventListener('click', function () {
-            var graficasContainer = document.getElementById('chart_div_idiomas'); 
+                        if (downloadPdfIdiomasBtn) {
+                            downloadPdfIdiomasBtn.addEventListener('click', function () {
+                                var graficasContainer = document.getElementById('chart_div_idiomas'); 
 
-            if (graficasContainer) {
-                // Crear un nuevo elemento div para contener tanto la imagen como la gráfica
-                var containerDiv = document.createElement('div');
+                                if (graficasContainer) {
+                                    // Crear un nuevo elemento div para contener tanto la imagen como la gráfica
+                                    var containerDiv = document.createElement('div');
 
-                // Encabezado con la imagen a la izquierda y "Gestionati" a la derecha
-                var header = document.createElement('header');
-                header.innerHTML = `
-                <div style="float: left;">
+                                    // Encabezado con la imagen a la izquierda y "Gestionati" a la derecha
+                                    var header = document.createElement('header');
+                                    header.innerHTML = `
+                                        <div style="float: left;">
                                             <img src="{{ asset('storage/img/th3codelogo.ico') }}" alt="Perfil" class="w-20 h-20 mb-8">
                                         </div>
                                         <div style="float: left; margin-top: 20px;">
-                                        <p style="font-weight: bold; font-size: larger; color: #008080;">Gestionati</p>
+                                            <p style="font-weight: bold; font-size: larger; color: #008080;">Gestionati</p>
                                         </div>
                                         <div style="clear: both;"></div> <!-- Limpiar el float para que el texto aparezca más abajo -->
-                                      `;
+                                    `;
 
-                // Agregar el encabezado al contenedor
-                containerDiv.appendChild(header);
+                                    // Agregar el encabezado al contenedor
+                                    containerDiv.appendChild(header);
 
-                // Agregar la gráfica al contenedor
-                containerDiv.appendChild(graficasContainer.cloneNode(true));
+                                    // Agregar la gráfica al contenedor
+                                    containerDiv.appendChild(graficasContainer.cloneNode(true));
 
-                // Configurar opciones para la descarga del PDF
-                var opt = {
-                    margin:       10,
-                    filename:     'graficaIdioma.pdf',
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { scale: 2 },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
+                                    // Configurar opciones para la descarga del PDF
+                                    var opt = {
+                                        margin: 10,
+                                        filename: 'graficaIdioma.pdf',
+                                        image: { type: 'jpeg', quality: 0.98 },
+                                        html2canvas: { scale: 2 },
+                                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                                    };
 
-                // Generar el PDF desde el contenedor que ahora contiene la imagen y la gráfica
-                html2pdf().from(containerDiv).set(opt).save();
-            } else {
-                console.error('No se encontró el contenedor de la gráfica de Idiomas.');
-            }
-        });
-    }
-});
-
+                                    // Generar el PDF desde el contenedor que ahora contiene la imagen y la gráfica
+                                    html2pdf().from(containerDiv).set(opt).save();
+                                } else {
+                                    console.error('No se encontró el contenedor de la gráfica de Idiomas.');
+                                }
+                            });
+                        }
+                    });
                 </script>
             @endif
 
@@ -223,7 +222,7 @@
                                             <img src="{{ asset('storage/img/th3codelogo.ico') }}" alt="Perfil" class="w-20 h-20 mb-8">
                                         </div>
                                         <div style="float: left; margin-top: 20px;">
-                                        <p style="font-weight: bold; font-size: larger; color: #008080;">Gestionati</p>
+                                            <p style="font-weight: bold; font-size: larger; color: #008080;">Gestionati</p>
                                         </div>
                                         <div style="clear: both;"></div> <!-- Limpiar el float para que el texto aparezca más abajo -->
                                     `;

@@ -51,6 +51,9 @@
                     <i class="fa-solid fa-filter-circle-xmark fa-lg"></i>
                 </button>
             @endif
+
+  
+
         </form>
 
         <!-- Tabla de candidatos -->
