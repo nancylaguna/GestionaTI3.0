@@ -56,6 +56,7 @@
                         alt="Icono Ver"
                         class="w-1 h-2 mb-5"
                         style="width: 2rem; height: 2rem;"
+                        title="Ver Contraseña"
                     />
                 </button>
             </div>

@@ -64,7 +64,7 @@ class GraficaController extends Controller{
             // Realiza la consulta en la base de datos "aldo".
             $query = \DB::connection('aldo')->table('informacion_profesional')
                 ->join('c3_puesto', 'informacion_profesional.puesto', '=', 'c3_puesto.id')
-                ->where('c3_puesto.skill', $skill); // Corregir 'skil' a 'skill'
+                ->where('c3_puesto.skill', $skill);
         
             // Calcula el promedio de sueldo_min y sueldo_max.
             $averageSalary = $query->avg(\DB::raw('(sueldo_min + sueldo_max) / 2'));
